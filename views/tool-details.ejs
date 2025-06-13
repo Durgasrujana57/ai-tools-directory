@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= tool.name %> - Tool Details</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <a href="/category/<%= tool.category %>">⬅ Back to <%= tool.category.replace('-', ' ').toUpperCase() %></a>
+    <h1><%= tool.name %></h1>
+  </header>
+
+  <main>
+    <section class="tool-overview">
+      <p><strong>Description:</strong> <%= tool.description %></p>
+      <p><strong>Category:</strong> <%= tool.category.replace('-', ' ') %></p>
+      <p><strong>Pricing:</strong> <%= tool.pricing %></p>
+      <p><strong>Website:</strong> 
+        <a href="<%= tool.website %>" target="_blank" rel="noopener noreferrer">
+          Visit <%= tool.name %>
+        </a>
+      </p>
+      <p><strong>Release Date:</strong> <%= tool.releaseDate %></p>
+      <p><strong>Last Updated:</strong> <%= tool.updateDate %></p>
+    </section>
+
+    <section class="tool-features">
+      <h2>Key Features</h2>
+      <ul>
+        <% tool.keyFeatures.forEach(feature => { %>
+          <li><%= feature %></li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <section class="tool-usecases">
+      <h2>Use Cases</h2>
+      <ul>
+        <% tool.useCases.forEach(useCase => { %>
+          <li><%= useCase %></li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <section class="tool-capabilities">
+      <h2>Capabilities</h2>
+      <ul>
+        <% tool.capabilities.forEach(cap => { %>
+          <li><%= cap %></li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <% if (tool.compatibility) { %>
+    <section class="tool-compatibility">
+      <h2>Compatibility</h2>
+      <ul>
+        <% tool.compatibility.forEach(platform => { %>
+          <li><%= platform %></li>
+        <% }) %>
+      </ul>
+    </section>
+    <% } %>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 AI Tool Directory</p>
+  </footer>
+</body>
+</html>

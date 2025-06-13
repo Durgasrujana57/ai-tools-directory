@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - AI Tool Directory</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <h1>Explore AI Categories</h1>
+  <div class="categories">
+    <% categories.forEach(category => { %>
+      <div class="category-card">
+        <img src="<%= category.imageUrl %>" alt="<%= category.name %>" width="200" />
+        <h3><%= category.name %></h3>
+        <p><%= category.description %></p>
+        <a href="/category/<%= category.id %>"><button>View Tools</button></a>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= category.name %> Tools</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1><%= category.name %> Tools</h1>
+    <a href="/dashboard" style="float:right;">⬅ Back to Dashboard</a>
+  </header>
+
+  <div class="tools">
+    <% tools.forEach(tool => { %>
+      <div class="tool-card">
+        <h2><%= tool.name %></h2>
+        <p><%= tool.description %></p>
+        <div class="tool-meta">
+          <span><strong>Pricing:</strong> <%= tool.pricing %></span>
+        </div>
+        <a href="/tools/<%= tool.id %>">View details →</a>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

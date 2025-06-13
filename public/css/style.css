@@ -1,0 +1,321 @@
+/* Reset & Global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #0e2b2b, #1a1a1a);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  color: #f0f0f0;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+a {
+  color: #00ffcc;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Logo */
+.logo {
+  text-align: center;
+  padding: 30px 0 10px;
+}
+.logo img {
+  width: 140px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 20px;
+}
+header h1 {
+  font-size: 2.5rem;
+  color: #00ffe0;
+}
+header p {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+/* Navigation */
+nav {
+  text-align: center;
+  margin: 15px 0 30px;
+}
+nav a {
+  margin: 0 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #00ffd0;
+}
+
+/* Section (Homepage Hero) */
+section {
+  text-align: center;
+  margin: 0 auto;
+  padding: 30px 20px;
+  max-width: 700px;
+  background-color: rgba(18, 18, 18, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.1);
+  animation: fadeInUp 1.2s ease;
+}
+section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* CTA Button */
+button {
+  padding: 12px 28px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #00ffc3, #008a8a);
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.4);
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 255, 204, 0.6);
+}
+
+/* Categories & Tools Grid */
+.categories,
+.tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+}
+
+/* Card Base Style */
+.category-card,
+.tool-card {
+  background-color: #1e1e1e;
+  border: 1px solid #2c2c2c;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.05);
+  animation: fadeInUp 0.6s ease;
+  text-align: centre;
+}
+.category-card:hover,
+.tool-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+}
+.category-card img,
+.tool-card img {
+ width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  background-color: #0f0f0f;
+  padding: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+.category-card h2,
+.tool-card h2 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.category-card p,
+.tool-card p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+.category-card a {
+  margin-top: auto;
+  font-weight: bold;
+  color: #00ffe0;
+}
+
+/* Tags */
+.tool-meta,
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.tag,
+.tool-meta span,
+.tags span {
+  display: inline-block;
+  background-color: #00ffe0;
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+/* Link inside Card */
+.category-card a,
+.tool-card a {
+  text-align: right;
+  font-weight: bold;
+  margin-top: auto;
+}
+.category-card a:hover,
+.tool-card a:hover {
+  text-decoration: underline;
+}
+
+/* === Tool Details Styling === */
+main {
+  padding: 20px 40px;
+  max-width: 900px;
+  margin: auto;
+}
+main section {
+  background-color: #121212;
+  padding: 24px;
+  margin-bottom: 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.08);
+}
+
+/* Enhanced Section Headings */
+main h2 {
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+  color: #00ffc8;
+  border-bottom: 2px solid #00ffc8;
+  padding-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Glowing Custom Bullet List */
+main ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the list horizontally */
+}
+
+main ul li {
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #e0e0e0;
+  line-height: 1.6;
+  width: fit-content;         /* So text doesn’t stretch full width */
+  text-align: left;           /* Keep text aligned near bullet */
+}
+
+main ul li::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #00ffc8 0%, #008a8a 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00ffc8;
+}
+
+
+/* Website Button (Optional if added in EJS) */
+main a button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: linear-gradient(to right, #00ffc3, #00b3b3);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.3);
+  transition: all 0.3s ease;
+}
+main a button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(0, 255, 204, 0.6);
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 30px auto;
+  max-width: 340px;
+}
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  background-color: #2a2a2a;
+  color: #fff;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #121212;
+  border-top: 1px solid #333;
+  color: #888;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .categories,
+  .tools {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  form {
+    padding: 0 15px;
+  }
+}

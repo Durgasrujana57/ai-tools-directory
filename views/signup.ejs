@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Signup</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <section>
+    <h1>Create Your Account</h1>
+
+    <% if (error) { %>
+      <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <form id="signupForm">
+      <input type="text" id="firstName" placeholder="First Name" required />
+      <input type="text" id="lastName" placeholder="Last Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <input type="password" id="confirmPassword" placeholder="Re-enter Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p>— OR —</p>
+    <button id="googleSignupBtn">Sign Up with Google</button>
+    <p style="margin-top: 20px;">Already have an account? <a href="/login">Login</a></p>
+  </section>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAYyjh3W4X3ETak6SZa1GNV5kVr7cAaPZ4",
+      authDomain: "ai-tools-e06b5.firebaseapp.com",
+      projectId: "ai-tools-e06b5"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+      }
+
+      try {
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        await userCredential.user.updateProfile({
+          displayName: `${firstName} ${lastName}`
+        });
+        const idToken = await userCredential.user.getIdToken();
+
+        await fetch('/sessionLogin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idToken })
+        });
+
+        window.location.href = '/dashboard';
+      } catch (err) {
+        alert('Signup failed: ' + err.message);
+      }
+    });
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+    document.getElementById('googleSignupBtn').addEventListener('click', () => {
+      auth.signInWithPopup(provider)
+        .then(async (result) => {
+          const idToken = await result.user.getIdToken();
+          await fetch('/sessionLogin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idToken })
+          });
+          window.location.href = '/dashboard';
+        })
+        .catch(err => alert('Google signup failed: ' + err.message));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <section>
+    <h1>Login to Your Account</h1>
+
+    <% if (error) { %>
+      <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <p>— OR —</p>
+    <button id="googleLoginBtn">Login with Google</button>
+    <p style="margin-top: 20px;">Don't have an account? <a href="/signup">Sign up</a></p>
+  </section>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAYyjh3W4X3ETak6SZa1GNV5kVr7cAaPZ4",
+      authDomain: "ai-tools-e06b5.firebaseapp.com",
+      projectId: "ai-tools-e06b5"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const idToken = await userCredential.user.getIdToken();
+        await fetch('/sessionLogin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idToken })
+        });
+        window.location.href = '/dashboard';
+      } catch (err) {
+        alert('Login failed: ' + err.message);
+      }
+    });
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+    document.getElementById('googleLoginBtn').addEventListener('click', () => {
+      auth.signInWithPopup(provider)
+        .then(async (result) => {
+          const idToken = await result.user.getIdToken();
+          await fetch('/sessionLogin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idToken })
+          });
+          window.location.href = '/dashboard';
+        })
+        .catch(err => alert('Google login failed: ' + err.message));
+    });
+  </script>
+</body>
+</html>
