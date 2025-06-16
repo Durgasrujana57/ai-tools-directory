@@ -1,13 +1,5 @@
-# Ignore node_modules
 node_modules/
-
-# Ignore environment variables and secrets
 .env
 key.json.json
-
-# Ignore logs
-*.log
-
-# System files
 .DS_Store
-Thumbs.db
+*.log
